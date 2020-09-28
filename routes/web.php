@@ -20,6 +20,19 @@ Route::group(['prefix' => 'admin'], function() {
     //課題4
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::get('profile/edit', 'Admin\ProfileController@edit');
+    
+    
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
 });
 
+Route::get('XXX', 'Admin\AAAController@bbb')->middleware('auth');
+Route::get('admin/profile/create', 'Admin\ProfileController@add')->middleware('auth');
+Route::get('admin/profile/edit', 'Admin\ProfileController@add')->middleware('auth');
+    
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
