@@ -17,12 +17,14 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('news/create', 'Admin\NewsController@add');
+    Route::post('news/create', 'Admin\NewsController@create');
     //課題4
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::get('profile/edit', 'Admin\ProfileController@edit');
     
     
     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::post('news/create', 'Admin\NewsController@create'); # 追記
 });
 
 Route::get('XXX', 'Admin\AAAController@bbb')->middleware('auth');
