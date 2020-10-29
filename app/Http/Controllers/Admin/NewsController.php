@@ -9,10 +9,14 @@ use App\News;
 
 class NewsController extends Controller
 {
-  public function add()
+  //ActionとはLaravel特有の言葉で、Controllerが持つ機能のことを指す。
+  public function add()//addというActionを実装する
   {
       return view('admin.news.create');
+      //view(‘admin.news.create’); = admin/newsディレクトリ配下のcreate.blade.php というファイルを呼び出す という意味
   }
+
+
 
 public function create(Request $request)
   {
