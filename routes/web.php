@@ -27,14 +27,12 @@ Route::group(['prefix' => 'admin'], function() {//adminから始まるURLをま�
     Route::get('news/delete', 'Admin\NewsController@delete')->middleware('auth');
     
     //課題4
-    Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
-    Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
-    Route::post('profile/create', 'Admin\ProfileController@create')->middleware('auth');
+    Route::get('profile/create', 'Admin\ProfileController@add');
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
     
     
     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
-    Route::post('news/create', 'Admin\NewsController@create')->middleware('auth'); # 追記
+    Route::post('news/create', 'Admin\NewsController@create'); # 追記
 });
 
 Route::get('XXX', 'Admin\AAAController@bbb')->middleware('auth');//laravel09

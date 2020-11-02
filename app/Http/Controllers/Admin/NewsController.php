@@ -1,30 +1,34 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-// 以下を追記することでNews Modelが扱えるようになる
 use App\News;
-
 class NewsController extends Controller
 {
-  //ActionとはLaravel特有の言葉で、Controllerが持つ機能のことを指す。
-  public function add()//addというActionを実装する
+  public function add()
   {
       return view('admin.news.create');
-      //view(‘admin.news.create’); = admin/newsディレクトリ配下のcreate.blade.php というファイルを呼び出す という意味
   }
-  
   public function create(Request $request)
   {
-      // admin/news/createにリダイレクトする
+
+    $this->validate($request, News::$rules);
+    $news = new News;
+    $form = $request->all();
+    if (isset($form['image'])) {
+        $path = $request->file('image')->store('public/image');
+        $news->image_path = basename($path);
+      } else {
+          $news->image_path = null;
+      }
+      unset($form['_token']);
+      // フォームから送信されてきたimageを削除する
+      unset($form['image']);
+      $news->fill($form);
+      $news->save();
       return redirect('admin/news/create');
-  }  
-
-
-
-
+  }
   
   public function index(Request $request)
   {
